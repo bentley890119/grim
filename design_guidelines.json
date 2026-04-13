@@ -1,0 +1,96 @@
+{
+  "project_name": "GrimAIO",
+  "domain": "E-Commerce / Gaming Keys",
+  "theme_mode": "dark",
+  "archetype": "7 (Electric & Neon)",
+  "design_philosophy": "Terminal/Hacker variant. High-contrast, aggressive, performance-focused. Pure black background with electric green accents. No soft edges or friendly pastels. Deep technical aesthetic.",
+  "colors": {
+    "background": "#050505",
+    "surface_card": "#0A0A0A",
+    "surface_hover": "#111111",
+    "primary_accent": "#00FF00",
+    "primary_foreground": "#000000",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "border_default": "#222222",
+    "border_active": "#00FF00",
+    "success": "#00FF00",
+    "discord_brand": "#5865F2"
+  },
+  "typography": {
+    "fonts": {
+      "heading": "JetBrains Mono, monospace",
+      "body": "Inter, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "rules": {
+      "h1": "text-4xl md:text-6xl font-black tracking-tighter uppercase",
+      "h2": "text-2xl md:text-3xl font-bold tracking-tight",
+      "body": "text-base leading-relaxed text-zinc-400",
+      "price": "text-3xl md:text-4xl font-mono text-white",
+      "buttons": "font-mono font-bold tracking-widest uppercase text-sm"
+    }
+  },
+  "spacing_and_layout": {
+    "container": "max-w-6xl mx-auto px-6 py-12 md:py-24",
+    "grid_system": "Use a 2-column layout for desktop (md:grid-cols-2). Left side for branding/story, Right side for the interactive purchase terminal.",
+    "card_padding": "p-6 md:p-8",
+    "border_radius": "rounded-none or max rounded-sm to maintain sharp, technical feel."
+  },
+  "visual_effects": {
+    "shadows": {
+      "neon_glow": "shadow-[0_0_15px_rgba(0,255,0,0.15)]",
+      "neon_glow_strong": "shadow-[0_0_30px_rgba(0,255,0,0.3)]"
+    },
+    "background_effects": "Use a subtle radial gradient behind the main section: `bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-[#00FF00]/10 via-[#050505] to-[#050505]`",
+    "borders": "1px solid borders everywhere. `border-zinc-800` normally, `border-[#00FF00]` when active or focused."
+  },
+  "component_instructions": {
+    "Header": {
+      "layout": "Sticky top, backdrop-blur-md bg-black/80, border-b border-zinc-800, flex justify-between items-center py-4",
+      "logo": "Text logo 'GrimAIO' in JetBrains Mono, text-[#00FF00]",
+      "actions": "Cart trigger button with item count badge (neon green background, black text)"
+    },
+    "Hero_Section": {
+      "left_column": "Contains the title 'GrimAIO', a technical subtitle ('UNDETECTED. UNMATCHED.'), and the 'Join Discord' button. The Discord button should be stylized with a subtle green border or traditional Discord blue, using href 'https://discord.gg/t2VrGXbTV'.",
+      "right_column": "The Purchase Terminal. Contains the Product Selection, Quantity Selector, and Checkout actions."
+    },
+    "Product_Selection": {
+      "type": "Radio-group style cards",
+      "options": [
+        { "id": "monthly", "label": "Monthly License", "price": "€9.27" },
+        { "id": "lifetime", "label": "Lifetime License", "price": "€17.38" }
+      ],
+      "styling": "Unselected: `bg-[#0A0A0A] border border-zinc-800 text-zinc-400`. Selected: `bg-[#0A0A0A] border border-[#00FF00] text-white shadow-[0_0_15px_rgba(0,255,0,0.15)]`",
+      "data_testids": ["product-monthly", "product-lifetime"]
+    },
+    "Quantity_Selector": {
+      "layout": "Flex row, items center, border border-zinc-800 w-fit",
+      "buttons": "Square buttons, w-10 h-10, hover:bg-zinc-800 transition-colors, font-mono",
+      "input_display": "w-12 text-center font-mono text-white",
+      "data_testids": ["quantity-decrease", "quantity-increase", "quantity-display"]
+    },
+    "Action_Buttons": {
+      "add_to_cart": "Full width, `bg-[#00FF00] text-black hover:bg-[#00cc00]` transition-all, font-mono, bold. `data-testid='add-to-cart-btn'`",
+      "stripe_checkout": "Full width, `bg-[#635BFF] text-white hover:bg-[#5851E5]` (Stripe brand color) or stark white `bg-white text-black`. `data-testid='checkout-btn'`",
+      "join_discord": "`border border-[#00FF00]/50 text-[#00FF00] hover:bg-[#00FF00]/10` transition-all. `data-testid='discord-join-btn'`"
+    },
+    "Cart_Sheet": {
+      "component": "Shadcn Sheet (Right side)",
+      "styling": "Dark background `#050505`, border-l border-zinc-800.",
+      "content": "List of cart items, total price calculation, and a final Checkout button.",
+      "data_testids": ["cart-sheet-trigger", "cart-item", "cart-total", "cart-checkout-btn"]
+    }
+  },
+  "required_libraries": [
+    "lucide-react",
+    "framer-motion"
+  ],
+  "accessibility_and_testing": {
+    "contrast": "Ensure text over pure black has sufficient contrast. Use text-zinc-400 for secondary, never darker.",
+    "test_ids": "All interactive elements MUST have the specified `data-testid` attributes."
+  },
+  "media_and_assets": {
+    "instruction": "Do NOT use any placeholder image URLs. Rely entirely on CSS gradients, typography, and SVG icons (Lucide) to create the dark hacker aesthetic. Images are not needed for this terminal-style interface."
+  }
+}
