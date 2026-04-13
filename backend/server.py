@@ -204,7 +204,19 @@ async def get_checkout_status(request: Request, session_id: str):
     webhook_url = f"{host_url}api/webhook/stripe"
     stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
     
-    checkout_status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+    try:
+        checkout_status: CheckoutStatusResponse = await stripe_checkout.get_checkout_status(session_id)
+    except Exception as e:
+        logger.error(f"Failed to get checkout status: {str(e)}")
+        # Return a pending status if we can't reach Stripe
+        return PaymentStatusResponse(
+            status="pending",
+            payment_status="pending",
+            amount_total=0,
+            currency="eur",
+            metadata={},
+            keys=None
+        )
     
     # Find the transaction
     transaction = await db.payment_transactions.find_one(
